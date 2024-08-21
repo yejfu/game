@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body { text-align: center; }
+        p { text-align: left; margin-left: 10%; margin-right: 10%; }
+        .centered-text { text-align: center; }
+        .paper {
+            background-image: url('M_paper.jpg');
+            background-size: cover;
+            padding: 20px;
+            margin: 20px;
+            color: black;
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <p>
+    伴隨著一陣劇烈的頭痛，我緩慢地睜開了雙眼。眼前一片黢黑，睜眼和閉眼根本沒有區別。<br>
+    “糟糕，這是哪裏啊...... 啊！我想起來了......”<br>
+    我拿出我的手機，打開手電筒照亮周圍的環境。<br>
+    “果然。”<br>
+    爲了避開“那些人”的追捕，我逃進了這個厠所隔間，本來想著待一會，觀察一下動靜就出去，沒想到直接睡着了，負責關門的傢伙也不檢查檢查再關。<br>
+    順便上了一個厠所後，我打開隔間的門，洗了個手，就準備走了。然而，厠所大門鎖了。<br>
+    “啊？不是吧？”<br>
+    我嘗試用力擰開門把，然而我知道沒有用，這是電子鎖。我環顧四周，發現墻上有一個數字密碼盤。<br>
+    “什麽神經病設計，出去也要密碼？不應該是按一個按鈕就能出去嗎？而且還説輸入錯誤5次就自動報警？有毛病啊？”<br>
+    我站在密碼盤前，隨機點了一組數字，顯然，不可能讓我猜對。只剩4次嘗試機會了。<br>
+    “不會真要等到明天早上吧？” 我嘀咕道。<br>
+    我開始在厠所裏面閑逛，閑得無聊，打開洗手池下面的收納櫃看一看，沒想到有驚喜。收納櫃的頂部貼著一張紙，如果不是我特意把頭伸進去看，不會有人發現。這張紙像是從哪撕下來的，上面寫著這個密碼的提示：<br>
+    </p>
+    <!-- <div class="paper">
+        <p>
+           This is a message written on a piece of paper image.<br>
+           asefasefage.<br>
+        </p>
+    </div> -->
+    <img src="M_paper.jpg" alt="Example Image" style="max-width: 100%; height: auto;">
+    <p>“哇！看來不用等到明天晚上了。不過，這是什麽意思啊......感覺像是四位數密碼”</p>
+    <input type="text" id="guess" placeholder="輸入密碼">
+    <button onclick="checkNumber()">提交</button>
+    <p id="message" class="centered-text" style="color: red;"></p>
+
+    <script>
+    var correctAnswer = "4926"
+    var wrongMessages = ["糟了，不對啊，還剩3次機會", "糟糕，怎麽還是不對啊......只剩兩次了", "沒錯啊，怎麽還是不對啊......欸等等，這張紙不就是......不能再錯了啊求求了......"];
+    var messageIndex = 0;
+    var wrongAttempts = 0;
+
+    function checkNumber() {
+        var guess = document.getElementById("guess").value;
+        var message = document.getElementById("message");
+        
+        if (guess == correctAnswer) {
+            window.location.href = "correct.html";
+        } 
+        else {
+            if (wrongAttempts < 3) {
+                message.textContent = wrongMessages[messageIndex];
+                messageIndex = (messageIndex + 1) % wrongMessages.length;
+                wrongAttempts++;
+            }
+            else {
+                window.location.href = "wrong.html";
+            }
+        }
+    }
+    </script>
+</body>
+</html>
