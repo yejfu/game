@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電腦</title>
+    <style>
+        body { text-align: center; }
+        p { text-align: left; margin-left: 10%; margin-right: 10%; }
+        .centered-text { text-align: center; }
+        .paper {
+            background-image: url('M_paper.jpg');
+            background-size: cover;
+            padding: 20px;
+            margin: 20px;
+            color: black;
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <p>
+    “成功！” 我打開了電腦，桌面有一個“抽屜解鎖”，我雙擊點開，顯示的是一行字：<br>
+    “入四個字母就開到櫃桶。唔記得就睇下面自己諗啦！”<br>
+    我坐了下來，慢慢分析這圖代表的意思......
+    </p>
+    <!-- <div class="paper">
+        <p>
+           This is a message written on a piece of paper image.<br>
+           asefasefage.<br>
+        </p>
+    </div> -->
+    <img src="drawer.jpg" alt="Example Image" style="max-width: 100%; height: auto;"><br>
+    <input type="text" id="guess" placeholder="輸入密碼">
+    <button onclick="checkNumber()">提交</button>
+    <p id="message" class="centered-text" style="color: red;"></p>
+
+    <script>
+    var correctAnswer = "fire"
+    var wrongMessages = ["錯誤次數過多將自動報警，你還有三次機會", "糟糕，只剩兩次機會了，密碼會是什麽啊？L、N、E到底代表什麽......", "最後一次了，求求了，會是什麽啊？這個Ω爲什麽會出現在這裏？代表什麽？"];
+    var messageIndex = 0;
+    var wrongAttempts = 0;
+
+    function checkNumber() {
+        var guess = document.getElementById("guess").value;
+        var message = document.getElementById("message");
+        
+        if (guess == correctAnswer) {
+            window.location.href = "correct3.html";
+        } 
+        else {
+            if (wrongAttempts < 20) {
+                if (wrongAttempts >= 16) {
+                    message.textContent = wrongMessages[messageIndex];
+                    messageIndex = (messageIndex + 1) % wrongMessages.length;
+                }
+                wrongAttempts++;
+            }
+            else {
+                window.location.href = "wrong3.html";
+            }
+        }
+    }
+    </script>
+</body>
+</html>
